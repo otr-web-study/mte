@@ -1,0 +1,48 @@
+.editor {
+  min-height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
+}
+
+.editor__title {
+  margin: 15px 0;
+}
+
+.editor__condition-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-top: 10px;
+  gap: 20px;
+}
+
+.editor__condition-btn {
+  color: var(--fc-blue-100);
+}
+
+.editor__template {
+  margin-top: 15px;
+  flex-grow: 1;
+}
+
+.editor__controls {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.editor__btn {
+  color: white;
+}
+
+.editor__btn_type_preview {
+  background-color: var(--fc-green);
+}
+
+.editor__btn_type_close {
+  background-color: #e1564f;
+}
+
+.editor__btn_type_save {
+  background-color: var(--fc-blue-200);
+}

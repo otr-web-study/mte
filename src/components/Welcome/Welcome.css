@@ -1,0 +1,12 @@
+.welcome-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-page__editor-btn {
+  padding: 8px 20px;
+  background-color: var(--fc-blue-200);
+  font-size: 20px;
+}

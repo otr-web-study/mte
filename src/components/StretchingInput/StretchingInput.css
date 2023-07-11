@@ -1,0 +1,18 @@
+.input {
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  resize: none;
+  background-color: var(--bg-secondary);
+  color: var(--fc);
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.input::placeholder {
+  color: var(--bg-tertiary);
+}
+
+/* .input::-webkit-scrollbar {
+  width: 0px;
+} */
