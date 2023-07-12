@@ -1,4 +1,5 @@
-.input {
+.textarea-auto {
+  width: 100%;
   padding: 10px 15px;
   border-radius: 4px;
   border: none;
@@ -9,10 +10,10 @@
   line-height: 1.4;
 }
 
-.input::placeholder {
-  color: var(--bg-tertiary);
+.textarea-auto::placeholder {
+  color: var(--fc-dark);
 }
 
-/* .input::-webkit-scrollbar {
-  width: 0px;
-} */
+.textarea-auto:focus-visible {
+  outline: 1px solid var(--fc-green);
+}

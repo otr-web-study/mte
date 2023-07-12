@@ -1,0 +1,17 @@
+.button-close {
+  width: 25px;
+  aspect-ratio: 1/1;
+  background-color: var(--bg-secondary);
+  background-image: url('/src/assets/images/icon-close.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-close:hover {
+  opacity: 0.7;
+}

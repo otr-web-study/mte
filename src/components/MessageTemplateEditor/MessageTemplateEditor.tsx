@@ -2,14 +2,16 @@ import { FC } from 'react';
 import { Container } from 'components/Container/Container';
 import Button from 'components/Button/Button';
 import VariableButtonList from 'components/VariableButtonList';
-import StretchingInput from 'components/StretchingInput';
+import Template from 'components/Template/Template';
+import { Template as ITemplate } from 'Types/Template';
 import './MessageTemplateEditor.css';
 
 interface MessageTemplateEditorProps {
   arrVarNames: string[];
+  template?: ITemplate;
 }
 
-const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({ arrVarNames }) => {
+const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({ arrVarNames, template }) => {
   const handleVariableButtonClick = (variable: string) => {
     console.log(variable);
   };
@@ -31,7 +33,7 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({ arrVarNames }) 
           </Button>
         </div>
         <div className="editor__template">
-          <StretchingInput />
+          <Template template={template} />
         </div>
         <div className="editor__controls">
           <Button
