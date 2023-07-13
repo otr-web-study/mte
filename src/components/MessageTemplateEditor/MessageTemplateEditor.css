@@ -11,7 +11,7 @@
 .editor__condition-controls {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   margin-top: 10px;
   gap: 20px;
 }

@@ -1,4 +1,4 @@
-.textarea-auto {
+.app-input {
   width: 100%;
   padding: 10px 15px;
   border-radius: 4px;
@@ -9,10 +9,10 @@
   line-height: 1.4;
 }
 
-.textarea-auto::placeholder {
+.app-input::placeholder {
   color: var(--fc-dark);
 }
 
-.textarea-auto:focus-visible {
+.app-input:focus-visible {
   outline: 1px solid var(--fc-green);
 }

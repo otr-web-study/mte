@@ -25,12 +25,21 @@ function App() {
     },
   });
 
-  const handleEditorClick = () => setEditMode(true);
+  const handleSaveTemplate = (template: Template) => {
+    setLocalData('MessageTemplateEditor/template', template);
+  };
+
+  const toggleEditorMode = () => setEditMode(!editMode);
 
   const content = editMode ? (
-    <MessageTemplateEditor arrVarNames={arrVarNames} template={template} />
+    <MessageTemplateEditor
+      arrVarNames={arrVarNames}
+      template={template}
+      onTemplateSave={handleSaveTemplate}
+      onClose={toggleEditorMode}
+    />
   ) : (
-    <Welcome onEditorClick={handleEditorClick} />
+    <Welcome onEditorClick={toggleEditorMode} />
   );
 
   return <div className="app">{content}</div>;
