@@ -1,29 +1,23 @@
 import { type FC } from 'react';
-import TextAreaAuto from 'components/TextAreaAuto';
 import { Template as ITemplate, NestedTemplatePathKey } from 'Types';
-import { Condition } from './Condition/Condition';
-import { useMessageEditorInputs } from 'hooks/useMessageEditorInput';
+import TemplateItem from './TemplateItem/TemplateItem';
 
 interface TemplateProps {
-  template?: ITemplate;
-  minRows?: number;
+  template: ITemplate;
   path: NestedTemplatePathKey[];
+  minRows?: number;
 }
-const Template: FC<TemplateProps> = ({ template = { message: '' }, minRows = 2, path }) => {
-  const { handleInputBlur, handleInputFocus, handleInputChange } = useMessageEditorInputs(path);
+const Template: FC<TemplateProps> = ({ template, minRows = 2, path }) => {
+  const content = template.map((templateItem, index) => (
+    <TemplateItem
+      key={templateItem.key}
+      minRows={minRows}
+      template={templateItem}
+      path={[...path, index]}
+    />
+  ));
 
-  return (
-    <>
-      <TextAreaAuto
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        minRows={minRows}
-        value={template.message}
-        onChange={handleInputChange}
-      />
-      <Condition condition={template.condition} path={[...path, 'condition']}></Condition>
-    </>
-  );
+  return content;
 };
 
 export default Template;

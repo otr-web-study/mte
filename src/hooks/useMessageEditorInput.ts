@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent, useContext } from 'react';
 import { TemplateContext } from 'providers/TemplateProvider';
-import { NestedTemplatePathKey, elementIsTemplate } from 'Types';
+import { NestedTemplatePathKey, elementIsTemplateItem } from 'Types';
 
 export const useMessageEditorInputs = (path: NestedTemplatePathKey[]) => {
   const context = useContext(TemplateContext);
@@ -14,18 +14,16 @@ export const useMessageEditorInputs = (path: NestedTemplatePathKey[]) => {
   const handleInputFocus = (
     event: FocusEvent<HTMLTextAreaElement> | FocusEvent<HTMLInputElement>,
   ) => {
-    activeElement.current = event.target;
+    activeElement.current = { input: event.target, path };
   };
 
   const handleInputBlur = () => {
-    activeElement.current = undefined;
+    // activeElement.current = undefined;
   };
 
   const handleInputChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     const element = getTemplateElementByPath(path);
-    // eslint-disable-next-line no-debugger
-    // debugger;
-    if (elementIsTemplate(element)) {
+    if (elementIsTemplateItem(element)) {
       element.message = evt.target.value;
       setActualTemplate();
     }

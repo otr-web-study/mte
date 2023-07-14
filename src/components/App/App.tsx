@@ -15,15 +15,23 @@ function App() {
     'position',
   ]);
 
-  const template = getLocalData<Template | undefined>('MessageTemplateEditor/template', {
-    message: '',
-    condition: {
-      condition: '',
-      success: { message: '' },
-      fail: { message: '' },
-      template: { message: '' },
+  const uuid = new Date().getTime();
+
+  const template = getLocalData<Template | undefined>('MessageTemplateEditor/template', [
+    {
+      message: '',
+      key: uuid,
+      condition: {
+        variable: '',
+        success: [{ message: '', key: uuid + 1 }],
+        fail: [{ message: '', key: uuid + 2 }],
+      },
     },
-  });
+    {
+      message: '',
+      key: uuid + 3,
+    },
+  ]);
 
   const handleSaveTemplate = (template: Template) => {
     setLocalData('MessageTemplateEditor/template', template);
@@ -35,7 +43,7 @@ function App() {
     <MessageTemplateEditor
       arrVarNames={arrVarNames}
       template={template}
-      onTemplateSave={handleSaveTemplate}
+      callbackSave={handleSaveTemplate}
       onClose={toggleEditorMode}
     />
   ) : (

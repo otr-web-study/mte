@@ -41,7 +41,6 @@ export const Condition: FC<ConditionProps> = ({ condition, path }) => {
           </label>
         </div>
       </div>
-      <Template minRows={1} template={condition.template} path={[...path, 'template']}></Template>
     </>
   );
 };

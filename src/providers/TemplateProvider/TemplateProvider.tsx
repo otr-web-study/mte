@@ -4,8 +4,10 @@ import {
   Template,
   ConditionTemplate,
   ConditionPathKey,
+  TemplateItem,
   elementIsTemplate,
   elementIsCondition,
+  elementIsTemplateItem,
 } from 'Types';
 import { TemplateContext, GetTemplateElementByPath } from './TemplateContext';
 
@@ -21,10 +23,15 @@ export const TemplateProvider: FC<TemplateProviderProps> = ({ initialTemplate, c
   const getTemplateElementByPath: GetTemplateElementByPath = (path) => {
     if (!path.length) return templateRef.current;
 
-    let element: Template | ConditionTemplate = templateRef.current;
+    let element: Template | ConditionTemplate | TemplateItem = templateRef.current;
 
     for (const currentPath of path) {
-      if (currentPath === 'condition' && elementIsTemplate(element)) {
+      if (elementIsTemplate(element)) {
+        if (typeof currentPath !== 'number') {
+          throw new Error('Wrong path.');
+        }
+        element = element[currentPath];
+      } else if (currentPath === 'condition' && elementIsTemplateItem(element)) {
         if (!element['condition']) {
           throw new Error('Wrong path.');
         }
@@ -38,7 +45,7 @@ export const TemplateProvider: FC<TemplateProviderProps> = ({ initialTemplate, c
   };
 
   const setActualTemplate = () => {
-    setTemplate(templateRef.current);
+    setTemplate(structuredClone(templateRef.current));
   };
 
   return (
