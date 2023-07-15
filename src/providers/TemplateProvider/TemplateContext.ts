@@ -1,14 +1,8 @@
 import { createContext, MutableRefObject } from 'react';
-import {
-  ActiveInput,
-  Template,
-  TemplateItem,
-  ConditionTemplate,
-  NestedTemplatePathKey,
-} from 'Types';
+import { ActiveInput, Template, NestedTemplatePathKey, TemplateElement } from 'Types';
 
 export interface GetTemplateElementByPath {
-  (path: NestedTemplatePathKey[]): Template | ConditionTemplate | TemplateItem;
+  (path: NestedTemplatePathKey[]): [TemplateElement, TemplateElement | null];
 }
 
 export interface TemplateContextProps {

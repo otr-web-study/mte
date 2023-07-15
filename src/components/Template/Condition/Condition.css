@@ -19,33 +19,39 @@
   border-right: 2px dotted var(--bg-secondary);
 }
 
-.condition__wrapper {
+.condition__container {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
+.condition__wrapper {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
 .condition__caption {
   display: flex;
   gap: 10px;
-  align-items: center;
-}
-
-.condition__caption_blue {
-  color: var(--fc-blue-200);
-}
-
-.condition__caption_purplish {
-  color: var(--fc-purplish);
-}
-
-.condition__caption_light-blue {
-  color: var(--fc-blue-100);
 }
 
 .condition__capriton-text {
   width: 5%;
   text-align: right;
   font-weight: 700;
+  padding-top: 10px;
+}
+
+.condition__capriton-text_blue {
+  color: var(--fc-blue-200);
+}
+
+.condition__capriton-text_purplish {
+  color: var(--fc-purplish);
+}
+
+.condition__capriton-text_light-blue {
+  color: var(--fc-blue-100);
 }

@@ -6,6 +6,9 @@ import Template from 'components/Template/Template';
 import { Template as ITemplate } from 'Types/Template';
 import { TemplateProvider } from 'providers/TemplateProvider';
 import { useMessageEditor } from 'hooks/useMessageEditor';
+import { useMessagePreview } from 'hooks/useMessagePreview';
+import MessagePreview from 'components/MessagePreview/MessagePreview';
+import { getUniqueKey } from 'utils/uniqueKey';
 import './MessageTemplateEditor.css';
 
 interface MessageTemplateEditorProps {
@@ -23,34 +26,30 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
   callbackSave,
   onClose,
 }) => {
-  const { template, handleAddVariable } = useMessageEditor();
+  const { template, handleAddVariable, handleAddCondition, handleDeleteCondition } =
+    useMessageEditor();
+
+  const { isVisible: isMessagePreviewVisible, toggleMessagePreviewVisible } = useMessagePreview();
 
   return (
     <Container>
       <div className="editor">
         <h1 className="editor__title">Message Template Editor</h1>
-        <p>Variables</p>
+        <h5>Variables</h5>
         <div className="editor__condition-controls">
           <VariableButtonList arrVarNames={arrVarNames} onClick={handleAddVariable} />
-          <Button
-            className="editor__condition-btn"
-            onClick={() => {
-              console.log('click');
-            }}
-          >
+          <Button className="editor__condition-btn" onClick={handleAddCondition}>
             + IF THEN ELSE
           </Button>
         </div>
         <div className="editor__template">
-          <p>Message template</p>
-          <Template template={template} path={[]} />
+          <h5>Message template</h5>
+          <Template template={template} path={[]} onDeleteCondition={handleDeleteCondition} />
         </div>
         <div className="editor__controls">
           <Button
             className="editor__btn editor__btn_type_preview"
-            onClick={() => {
-              console.log('preview');
-            }}
+            onClick={toggleMessagePreviewVisible}
           >
             Preview
           </Button>
@@ -65,13 +64,20 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
           </Button>
         </div>
       </div>
+      {isMessagePreviewVisible && (
+        <MessagePreview
+          onClose={toggleMessagePreviewVisible}
+          arrVarNames={arrVarNames}
+          template={template}
+        />
+      )}
     </Container>
   );
 };
 
 const WithTemplateProvider: FC<WithTemplateProviderProps> = ({ template = [], ...props }) => {
   if (!template.length) {
-    template.push({ message: '', key: new Date().getTime() });
+    template.push({ message: '', key: getUniqueKey() });
   }
 
   return (

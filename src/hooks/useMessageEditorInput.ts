@@ -22,7 +22,7 @@ export const useMessageEditorInputs = (path: NestedTemplatePathKey[]) => {
   };
 
   const handleInputChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    const element = getTemplateElementByPath(path);
+    const [element] = getTemplateElementByPath(path);
     if (elementIsTemplateItem(element)) {
       element.message = evt.target.value;
       setActualTemplate();

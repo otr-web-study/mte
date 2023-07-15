@@ -9,9 +9,10 @@ interface TemplateItemProps {
   template: ITemplateItem;
   minRows?: number;
   path: NestedTemplatePathKey[];
+  onDeleteCondition: (path: NestedTemplatePathKey[]) => void;
 }
 
-const TemplateItem: FC<TemplateItemProps> = ({ template, minRows, path }) => {
+const TemplateItem: FC<TemplateItemProps> = ({ template, minRows, path, onDeleteCondition }) => {
   const { handleInputBlur, handleInputFocus, handleInputChange } = useMessageEditorInputs(path);
 
   return (
@@ -23,7 +24,11 @@ const TemplateItem: FC<TemplateItemProps> = ({ template, minRows, path }) => {
         value={template.message}
         onChange={handleInputChange}
       />
-      <Condition condition={template.condition} path={[...path, 'condition']} />
+      <Condition
+        condition={template.condition}
+        path={[...path, 'condition']}
+        onDelete={onDeleteCondition}
+      />
     </div>
   );
 };

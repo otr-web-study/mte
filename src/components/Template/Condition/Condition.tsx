@@ -9,8 +9,9 @@ import './Condition.css';
 interface ConditionProps {
   condition?: ConditionTemplate;
   path: NestedTemplatePathKey[];
+  onDelete: (path: NestedTemplatePathKey[]) => void;
 }
-export const Condition: FC<ConditionProps> = ({ condition, path }) => {
+export const Condition: FC<ConditionProps> = ({ condition, path, onDelete }) => {
   const { handleInputBlur, handleInputFocus } = useMessageEditorInputs(path);
 
   if (!condition) return null;
@@ -19,26 +20,39 @@ export const Condition: FC<ConditionProps> = ({ condition, path }) => {
     <>
       <div className="condition">
         <div className="conditon__btn-wrapper">
-          <ButtonClose
-            onClick={() => {
-              console.log('close');
-            }}
-          />
+          <ButtonClose onClick={() => onDelete(path)} />
           <div className="condition__btn-border"></div>
         </div>
-        <div className="condition__wrapper">
-          <label className="condition__caption condition__caption_blue">
-            <span className="condition__capriton-text">IF</span>
-            <AppInput onFocus={handleInputFocus} onBlur={handleInputBlur} readonly />
+        <div className="condition__container">
+          <label className="condition__caption">
+            <span className="condition__capriton-text condition__capriton-text_blue">IF</span>
+            <AppInput
+              readonly
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              value={condition.variable}
+            />
           </label>
-          <label className="condition__caption condition__caption_purplish">
-            <span className="condition__capriton-text">THEN</span>
-            <Template minRows={1} template={condition.success} path={[...path, 'success']} />
-          </label>
-          <label className="condition__caption condition__caption_light-blue">
-            <span className="condition__capriton-text">ELSE</span>
-            <Template minRows={1} template={condition.fail} path={[...path, 'fail']} />
-          </label>
+          <div className="condition__wrapper">
+            <span className="condition__capriton-text condition__capriton-text_purplish">THEN</span>
+            <Template
+              minRows={1}
+              template={condition.success}
+              path={[...path, 'success']}
+              onDeleteCondition={onDelete}
+            />
+          </div>
+          <div className="condition__wrapper">
+            <span className="condition__capriton-text condition__capriton-text_light-blue">
+              ELSE
+            </span>
+            <Template
+              minRows={1}
+              template={condition.fail}
+              path={[...path, 'fail']}
+              onDeleteCondition={onDelete}
+            />
+          </div>
         </div>
       </div>
     </>
