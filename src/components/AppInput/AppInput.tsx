@@ -5,6 +5,7 @@ interface AppInputProps {
   className?: string;
   readonly?: boolean;
   placeholder?: string;
+  id?: string;
   value: string;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
   onBlur?: () => void;

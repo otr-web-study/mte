@@ -26,6 +26,7 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
   callbackSave,
   onClose,
 }) => {
+  const uniqueArrVarNames = Array.from(new Set(arrVarNames));
   const { template, handleAddVariable, handleAddCondition, handleDeleteCondition } =
     useMessageEditor();
 
@@ -37,7 +38,7 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
         <h1 className="editor__title">Message Template Editor</h1>
         <h5>Variables</h5>
         <div className="editor__condition-controls">
-          <VariableButtonList arrVarNames={arrVarNames} onClick={handleAddVariable} />
+          <VariableButtonList arrVarNames={uniqueArrVarNames} onClick={handleAddVariable} />
           <Button className="editor__condition-btn" onClick={handleAddCondition}>
             + IF THEN ELSE
           </Button>
@@ -67,7 +68,7 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
       {isMessagePreviewVisible && (
         <MessagePreview
           onClose={toggleMessagePreviewVisible}
-          arrVarNames={arrVarNames}
+          arrVarNames={uniqueArrVarNames}
           template={template}
         />
       )}

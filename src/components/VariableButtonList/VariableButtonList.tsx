@@ -7,8 +7,8 @@ interface VariableButtonListProps {
   onClick: (variable: string) => void;
 }
 const VariableButtonList: FC<VariableButtonListProps> = ({ arrVarNames, onClick }) => {
-  const content = arrVarNames.map((variable, idx) => (
-    <li key={idx}>
+  const content = arrVarNames.map((variable) => (
+    <li key={variable}>
       <Button
         className="variable-list__btn"
         onClick={() => onClick(variable)}
