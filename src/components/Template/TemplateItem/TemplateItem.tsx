@@ -13,13 +13,12 @@ interface TemplateItemProps {
 }
 
 const TemplateItem: FC<TemplateItemProps> = ({ template, minRows, path, onDeleteCondition }) => {
-  const { handleInputBlur, handleInputFocus, handleInputChange } = useMessageEditorInputs(path);
+  const { handleInputFocus, handleInputChange } = useMessageEditorInputs(path);
 
   return (
     <div className="template-item">
       <TextAreaAuto
         onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
         minRows={minRows}
         value={template.message}
         onChange={handleInputChange}

@@ -53,7 +53,10 @@ export const useMessageEditor = () => {
     const text = `{${variable}}`;
 
     if (elementIsCondition(element)) {
-      element.variable = text;
+      element.variable = `${element.variable.substring(
+        0,
+        position,
+      )}${text}${element.variable.substring(position)}`;
     } else if (elementIsTemplateItem(element)) {
       element.message = `${element.message.substring(
         0,

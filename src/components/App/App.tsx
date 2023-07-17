@@ -8,17 +8,18 @@ import { Template } from 'Types/Template';
 function App() {
   const [editMode, setEditMode] = useState(false);
 
-  const arrVarNames = getLocalData<string[]>('MessageTemplateEditor/arrVarNames', [
+  const arrVarNames = getLocalData<string[]>('arrVarNames', [
     'firstname',
     'lastname',
     'company',
     'position',
   ]);
 
-  const template = getLocalData<Template | undefined>('MessageTemplateEditor/template', undefined);
+  const template = getLocalData<Template | undefined>('template', undefined);
 
-  const handleSaveTemplate = (template: Template) => {
-    setLocalData('MessageTemplateEditor/template', template);
+  const handleSaveTemplate = (template: Template, arrVarNames: string[]) => {
+    setLocalData('template', template);
+    setLocalData('arrVarNames', arrVarNames);
   };
 
   const toggleEditorMode = () => setEditMode(!editMode);

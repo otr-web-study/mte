@@ -1,5 +1,5 @@
 import TextAreaAutosize from 'react-textarea-autosize';
-import { type FC, FocusEvent, ChangeEvent } from 'react';
+import { FC, FocusEvent, ChangeEvent } from 'react';
 import './TextAreaAuto.css';
 
 interface TextAreaAutoProps {
@@ -9,7 +9,6 @@ interface TextAreaAutoProps {
   value: string;
   onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onFocus: (event: FocusEvent<HTMLTextAreaElement>) => void;
-  onBlur: () => void;
 }
 const TextAreaAuto: FC<TextAreaAutoProps> = ({ className, minRows = 2, ...props }) => {
   return (

@@ -13,7 +13,7 @@ import './MessageTemplateEditor.css';
 
 interface MessageTemplateEditorProps {
   arrVarNames: string[];
-  callbackSave: (template: ITemplate) => void;
+  callbackSave: (template: ITemplate, arrVarNames: string[]) => void;
   onClose: () => void;
 }
 
@@ -56,7 +56,7 @@ const MessageTemplateEditor: FC<MessageTemplateEditorProps> = ({
           </Button>
           <Button
             className="editor__btn editor__btn_type_save"
-            onClick={() => callbackSave(template)}
+            onClick={() => callbackSave(template, arrVarNames)}
           >
             Save
           </Button>

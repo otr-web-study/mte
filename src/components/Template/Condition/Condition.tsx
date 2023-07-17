@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import { ConditionTemplate, NestedTemplatePathKey } from 'Types';
 import Template from '../Template';
 import ButtonClose from 'components/ButtonClose';
-import AppInput from 'components/AppInput';
+import TextAreaAuto from 'components/TextAreaAuto';
 import { useMessageEditorInputs } from 'hooks/useMessageEditorInput';
 import './Condition.css';
 
@@ -12,7 +12,7 @@ interface ConditionProps {
   onDelete: (path: NestedTemplatePathKey[]) => void;
 }
 export const Condition: FC<ConditionProps> = ({ condition, path, onDelete }) => {
-  const { handleInputBlur, handleInputFocus } = useMessageEditorInputs(path);
+  const { handleInputFocus, handleInputChange } = useMessageEditorInputs(path);
 
   if (!condition) return null;
 
@@ -26,11 +26,11 @@ export const Condition: FC<ConditionProps> = ({ condition, path, onDelete }) => 
         <div className="condition__container">
           <label className="condition__caption">
             <span className="condition__capriton-text condition__capriton-text_blue">IF</span>
-            <AppInput
-              readonly
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
+            <TextAreaAuto
               value={condition.variable}
+              minRows={1}
+              onFocus={handleInputFocus}
+              onChange={handleInputChange}
             />
           </label>
           <div className="condition__wrapper">
