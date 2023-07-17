@@ -28,6 +28,7 @@
   background-color: var(--bg-tertiary);
   border-radius: 6px;
   padding: 10px;
+  white-space: pre-line;
 }
 
 .message-preview__variables {

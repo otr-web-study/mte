@@ -1,6 +1,6 @@
 export const template = [
   {
-    message: ' Hello, ',
+    message: 'Hello, ',
     key: 1689434427273,
     condition: {
       variable: '{firstname}',
@@ -31,14 +31,14 @@ export const template = [
       ],
       fail: [
         {
-          message: 'world!',
+          message: 'Bill Gates! ',
           key: 1689434454807,
         },
       ],
     },
   },
   {
-    message: ' Our company ',
+    message: 'Our company ',
     key: 1689434454807,
     condition: {
       variable: '{company}',
@@ -107,7 +107,7 @@ export const template = [
       ],
       fail: [
         {
-          message: 'world',
+          message: 'Bill Gates',
           key: 1689500631739,
         },
       ],
