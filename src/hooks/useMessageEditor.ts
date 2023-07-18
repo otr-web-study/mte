@@ -117,7 +117,7 @@ export const useMessageEditor = () => {
     }
 
     element.condition = nextElement.condition;
-    element.message = `${element.message} ${nextElement.message}`;
+    element.message = `${element.message}${nextElement.message}`;
     parentElement.splice(index + 1, 1);
 
     setActualTemplate();
